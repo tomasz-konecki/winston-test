@@ -1,0 +1,4 @@
+11:49:29 - error: Error message
+11:49:29 - warn: Warning message
+11:49:29 - info: Info level message
+11:49:29 - verbose: Verbose level message

@@ -1,0 +1,5 @@
+{"level":"error","message":"Error message","timestamp":"11:22:04"}
+{"level":"warn","message":"Warning message","timestamp":"11:22:04"}
+{"level":"info","message":"Info level message","timestamp":"11:22:04"}
+{"level":"verbose","message":"Verbose level message","timestamp":"11:22:04"}
+{"level":"debug","message":"Debugging info","timestamp":"11:22:04"}

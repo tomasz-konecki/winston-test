@@ -1,7 +1,38 @@
 "use strict";
 const winston = require("winston");
 
-winston.level = "debug";
+const fs = require("fs");
+const env = process.env.NODE_ENV || "development";
+const logDir = "log";
 
-winston.info("Hello world");
-winston.debug("Debugging info");
+// Create the log directory if it does not exist
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
+
+const tsFormat = () => new Date().toLocaleTimeString();
+
+const logger = new winston.Logger({
+  transports: [
+    // colorize the output to the console
+    new winston.transports.Console({
+      timestamp: tsFormat,
+      colorize: true,
+      level: "info"
+    }),
+    new (require("winston-daily-rotate-file"))({
+      filename: `${logDir}/-results.log`,
+      timestamp: tsFormat,
+      datePattern: "YYYY-MM-DD-dd",
+      prepend: true,
+      level: env === "development" ? "verbose" : "info"
+    })
+  ]
+});
+
+logger.error("Error message");
+logger.warn("Warning message");
+logger.info("Info level message");
+logger.verbose("Verbose level message");
+logger.debug("Debugging info");
+logger.silly("Silly level message");
